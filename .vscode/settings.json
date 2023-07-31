@@ -1,0 +1,33 @@
+
+    {
+
+        "git.autofetch": true,
+      
+        "workbench.iconTheme": "material-icon-theme",
+      
+        "vim.startofline": false,
+      
+        "git.confirmSync": false,
+      
+        "git.suggestSmartCommit": false,
+      
+      "diffEditor.ignoreTrimWhitespace": false,
+      
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      
+      "workbench.editor.enablePreview": false,
+      
+      "editor.codeActionsOnSave": {
+      
+      "source.fixAll.eslint": true,
+      
+      "source.fixAll.stylelint": true
+      
+      },
+      
+      "editor.cursorBlinking": "smooth",
+      
+      "editor.cursorSmoothCaretAnimation": "on",
+      
+      
+}
