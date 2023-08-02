@@ -1,6 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
 
+@import "tailwindcss/components";
 
+@import "tailwindcss/utilities";
 
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  @apply text-xs w-full border my-1 py-1 px-2 rounded-xl;
+}
+
+button {
+  @apply bg-gray-300;
+}
+button.primary {
+  background: #f5385d;
+  @apply bg-primary p-0.5 w-full text-white rounded-xl;
+}
