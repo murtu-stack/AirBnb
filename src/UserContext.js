@@ -18,7 +18,7 @@ export function UserContextProvider({ children }) {
       // });
     }
   }, []);
-
+  console.log(ready, "raedy");
   return (
     <UserContext.Provider value={{ user, setUser, ready }}>
       {children}

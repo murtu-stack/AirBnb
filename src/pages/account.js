@@ -12,15 +12,16 @@ export default function AccountPage() {
   if (subpage === undefined) {
     subpage = "profile";
   }
-  console.log(subpage);
+  console.log(user, "user", ready);
   async function logout() {
     await axios.post("http://localhost:4000/logout");
     setUser(null);
     setRedirect("/");
   }
-  if (!ready) {
-    return "Loading........";
-  }
+  console.log("loading", ready);
+  // if (!ready) {
+  //   return "Loading........";
+  // }
   if (!user && ready) {
     return <Navigate to={"/login"} />;
   }
@@ -41,7 +42,7 @@ export default function AccountPage() {
   return (
     <div>
       <nav className="w-full flex justify-center mt-8 gap-6 mb-8">
-        <Link className={linkClasses("profile")} to={"/account"}>
+        <Link className={linkClasses("profile")} to={"/account/profile"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
