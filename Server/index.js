@@ -1,10 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+// const path = require("path");
+
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const User = require("./models/User.js");
+const downloader = require("image-downloader");
+const multer = require("multer");
+
 require("dotenv").config();
 
 const app = express();
@@ -16,6 +21,7 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.get("/test", (req, res) => {
   res.json("test ok");
@@ -81,6 +87,24 @@ app.get("/get_profile", (req, res) => {
     res.json(null);
   }
 });
+console.log({ __dirname });
+app.post("/upload_by_link", async (req, res) => {
+  const { link } = req.body;
+  const newName = "photo" + Date.now() + ".jpg";
+  const { filename } = await downloader.image({
+    url: link,
+    dest: __dirname + "/uploads/" + newName,
+  });
+  res.json(newName);
+});
+const photos_middleware = multer({ dest: "uploads/" });
+
+app.post("/upload", photos_middleware.array("photos", 100), (req, res) => {
+  const { filename } = req.body;
+  console.log(req.photos);
+  res.json(req.photos);
+});
+
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("true");
 });
