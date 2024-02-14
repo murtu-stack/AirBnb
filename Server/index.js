@@ -9,6 +9,8 @@ const cookieParser = require("cookie-parser");
 const User = require("./models/User.js");
 const downloader = require("image-downloader");
 const multer = require("multer");
+const fs = require("fs");
+const { upload } = require("@testing-library/user-event/dist/upload.js");
 
 require("dotenv").config();
 
@@ -100,9 +102,16 @@ app.post("/upload_by_link", async (req, res) => {
 const photos_middleware = multer({ dest: "uploads/" });
 
 app.post("/upload", photos_middleware.array("photos", 100), (req, res) => {
-  const { filename } = req.body;
-  console.log(req.photos);
-  res.json(req.photos);
+  const uploaded_files = [];
+  for (let i = 0; i < req.files.length; i++) {
+    const { path, originalname } = req.files[i];
+    const parts = originalname.split(".");
+    const extension = parts[parts.length - 1];
+    const newPath = path + "." + extension;
+    fs.renameSync(path, newPath);
+    uploaded_files.push(newPath.replace("uploads\\", ""));
+  }
+  res.json(uploaded_files);
 });
 
 app.post("/logout", (req, res) => {

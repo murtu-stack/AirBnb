@@ -1,5 +1,4 @@
 import { Link, Navigate } from "react-router-dom";
-import Header from "../Header";
 import { useContext } from "react";
 import { useState } from "react";
 import { UserContext } from "../UserContext";

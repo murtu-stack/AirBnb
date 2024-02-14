@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Perks from "../Perks";
 import axios from "axios";
-import { response } from "express";
 
 export default function PlacePages(selected, onChange) {
   const { action } = useParams();
@@ -40,13 +39,13 @@ export default function PlacePages(selected, onChange) {
       data.append("photos", target_files[i]);
     }
     axios
-      .post("http:localhost:4000/upload", data, {
+      .post("http://localhost:4000/upload", data, {
         headers: { "Content-type": "multipart/form-data" },
       })
       .then((response) => {
-        const { data: filename } = response;
+        const { data: filenames } = response;
         setAddedPhotos((prev) => {
-          return [...prev, filename];
+          return [...prev, ...filenames];
         });
       });
   }
@@ -77,13 +76,13 @@ export default function PlacePages(selected, onChange) {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               class="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
@@ -159,13 +158,13 @@ export default function PlacePages(selected, onChange) {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   class="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
                   />
                 </svg>
