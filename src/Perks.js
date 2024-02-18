@@ -1,5 +1,5 @@
 // eslint-disable-next-lin/e
-export default function Perks() {
+export default function Perks(selected, onChange) {
   function input_header(text) {
     return <h2 className="text-lg mt-4">{text}</h2>;
   }
@@ -15,13 +15,27 @@ export default function Perks() {
       </>
     );
   }
-
+  function handleChange(ev) {
+    const { checked, name } = ev.target;
+    console.log(checked);
+    if (checked) {
+      onChange([...selected, name]);
+    } else {
+      onChange([...selected.filter((selectedName) => selectedName !== name)]);
+    }
+  }
   return (
     <>
       {pre_input("Perks", " Select all perks of your choice")}
       <div className="grid grid-cols-2 md:grid-cols-3 lg-grid-cols-3 gap-3">
         <label className="flex border p-6 gap-2 rounded-xl">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            name="wifi"
+            onChange={(ev) => {
+              handleChange(ev);
+            }}
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -39,7 +53,13 @@ export default function Perks() {
           <span> Wifi</span>
         </label>
         <label className="flex border p-6 gap-2 rounded-xl ">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            name="tv"
+            onChange={(ev) => {
+              handleChange(ev);
+            }}
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -57,7 +77,11 @@ export default function Perks() {
           <span> TV</span>
         </label>
         <label className="flex border p-6 gap-2 rounded-xl ">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            name="pets"
+            onChange={(ev) => handleChange(ev)}
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -75,7 +99,13 @@ export default function Perks() {
           <span>Pets</span>
         </label>
         <label className="flex border p-6 gap-2 rounded-xl">
-          <input type="checkbox"></input>
+          <input
+            onChange={(ev) => {
+              handleChange(ev);
+            }}
+            type="checkbox"
+            name="parking"
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -93,7 +123,11 @@ export default function Perks() {
           <span> Parking</span>
         </label>
         <label className="flex border p-6 gap-2 rounded-xl">
-          <input type="checkbox"></input>
+          <input
+            onChange={(ev) => handleChange(ev)}
+            type="checkbox"
+            name="private_entrance"
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -111,7 +145,11 @@ export default function Perks() {
           <span>Private Entrance</span>
         </label>
         <label className="flex border p-6 gap-2 rounded-xl">
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            onChange={(ev) => handleChange(ev)}
+            name="radio"
+          ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
