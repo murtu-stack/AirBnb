@@ -139,7 +139,7 @@ export default function PlacePages(selected, onChange) {
                 addedPhotos?.map((link, index) => (
                   <div key={index}>
                     <img
-                      className="rounded-2xl"
+                      className="rounded-2xl w-full h-full object-cover"
                       src={`http://localhost:4000/uploads/${link}`}
                       alt={`Photo ${index + 1}`}
                     />
