@@ -11,7 +11,9 @@ input[type="number"],
 textarea {
   @apply text-xs w-full border my-1 py-1 px-2 rounded-xl;
 }
-
+textarea {
+  height: 120px;
+}
 button {
   @apply bg-gray-300;
 }

@@ -1,5 +1,5 @@
 // eslint-disable-next-lin/e
-export default function Perks(selected, onChange) {
+export default function Perks({ selected, onChange }) {
   function input_header(text) {
     return <h2 className="text-lg mt-4">{text}</h2>;
   }
@@ -17,7 +17,8 @@ export default function Perks(selected, onChange) {
   }
   function handleChange(ev) {
     const { checked, name } = ev.target;
-    console.log(checked);
+    console.log(checked, "checked");
+    console.log(selected, "seletecd");
     if (checked) {
       onChange([...selected, name]);
     } else {
@@ -32,9 +33,8 @@ export default function Perks(selected, onChange) {
           <input
             type="checkbox"
             name="wifi"
-            onChange={(ev) => {
-              handleChange(ev);
-            }}
+            checked={selected.includes("wifi")}
+            onChange={handleChange}
           ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,10 +55,9 @@ export default function Perks(selected, onChange) {
         <label className="flex border p-6 gap-2 rounded-xl ">
           <input
             type="checkbox"
+            checked={selected.includes("tv")}
             name="tv"
-            onChange={(ev) => {
-              handleChange(ev);
-            }}
+            onChange={handleChange}
           ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,8 +78,9 @@ export default function Perks(selected, onChange) {
         <label className="flex border p-6 gap-2 rounded-xl ">
           <input
             type="checkbox"
+            checked={selected.includes("pets")}
             name="pets"
-            onChange={(ev) => handleChange(ev)}
+            onChange={handleChange}
           ></input>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -100,9 +100,8 @@ export default function Perks(selected, onChange) {
         </label>
         <label className="flex border p-6 gap-2 rounded-xl">
           <input
-            onChange={(ev) => {
-              handleChange(ev);
-            }}
+            onChange={handleChange}
+            checked={selected.includes("parking")}
             type="checkbox"
             name="parking"
           ></input>
@@ -124,8 +123,9 @@ export default function Perks(selected, onChange) {
         </label>
         <label className="flex border p-6 gap-2 rounded-xl">
           <input
-            onChange={(ev) => handleChange(ev)}
+            onChange={handleChange}
             type="checkbox"
+            checked={selected.includes("checkbox")}
             name="private_entrance"
           ></input>
           <svg
@@ -147,7 +147,8 @@ export default function Perks(selected, onChange) {
         <label className="flex border p-6 gap-2 rounded-xl">
           <input
             type="checkbox"
-            onChange={(ev) => handleChange(ev)}
+            checked={selected.includes("radio")}
+            onChange={handleChange}
             name="radio"
           ></input>
           <svg

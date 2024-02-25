@@ -2,11 +2,13 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import IndexPage from "./pages/index_page";
 import LoginPage from "./pages/login_page";
-import AccountPage from "./pages/account";
+import ProfilePage from "./pages/ProfilePage";
 import Layout from "./Layout";
 import RegisterPage from "./pages/register_page";
 import axios from "axios";
 import { UserContextProvider } from "./UserContext";
+import PlacePages from "./pages/place_pages";
+import PlacesFormPage from "./pages/PlacesFormPage";
 axios.defaults.withCredentials = true;
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
           <Route index element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/account/:subpage?" element={<AccountPage />} />
-          <Route path="/account/:subpage/:action?" element={<AccountPage />} />
+          <Route path="/account" element={<ProfilePage />} />
+          <Route path="/account/places" element={<PlacePages />} />
+          <Route path="/account/places/new" element={<PlacesFormPage />} />
+          <Route path="/account/places/:id" element={<PlacesFormPage />} />
         </Route>
       </Routes>
     </UserContextProvider>

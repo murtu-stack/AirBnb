@@ -3,7 +3,7 @@ const { schema } = require("./User");
 
 const PlaceSchema = new mongoose.Schema({
   title: String,
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   checkIn: Number,
   checkOut: Number,
   address: String,
